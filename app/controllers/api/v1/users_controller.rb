@@ -1,13 +1,13 @@
 class Api::V1::UsersController < ApplicationController
      respond_to :json
-   begin       
-     def show 
-       @user = User.find(params[:id])
-       respond_with @user
-    end
-    rescue
+    def show 
+     begin 
+      @user = User.find(params[:id])
+      respond_with @user
+     rescue
       head 404
-   end
+     end
+    end
 
    def create 
     user = User.new(user_params)
@@ -23,7 +23,8 @@ class Api::V1::UsersController < ApplicationController
    def user_params
      params.require(:user).permit(
        :email,
-       :password
+       :password,
+       :password_confirmation
      )
 
    end

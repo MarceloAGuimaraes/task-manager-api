@@ -3,7 +3,7 @@ class Api::V1::UsersController < ApplicationController
     def show 
      begin 
       @user = User.find(params[:id])
-      respond_with @user
+      render json: @user, status: 200
      rescue
       head 404
      end
@@ -14,6 +14,8 @@ class Api::V1::UsersController < ApplicationController
 
     if user.save
       render json: user, status: 201
+    else
+      render json: { errors: user.errors }, status: 422
     end
    end
 

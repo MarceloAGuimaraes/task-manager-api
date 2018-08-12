@@ -3,7 +3,7 @@ class Api::V1::UsersController < ApplicationController
     def show 
      begin 
       @user = User.find(params[:id])
-      render json: @user, status: 200
+      respond_with @user
      rescue
       head 404
      end
@@ -19,6 +19,16 @@ class Api::V1::UsersController < ApplicationController
     end
    end
 
+   def update
+    user = User.find(params[:id])
+     begin    
+      if user.update(user_params)
+        render json: user, status: 200
+      end
+    rescue
+       puts "erro"
+    end
+   end
 
    private 
 

@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-   it 'alo' do
-    user = FactoryGirl.build(:user)
-    expect(user).to respond_to(:password)
-   end
+    let!(:user) { FactoryGirl.create(:user)}
+
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_confirmation_of(:password) }
+    it { is_expected.to validate_uniqueness_of(:auth_token) }
 end

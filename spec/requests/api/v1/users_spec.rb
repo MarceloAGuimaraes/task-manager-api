@@ -19,7 +19,7 @@ RSpec.describe Api::V1::UsersController, type: :request do
            
        context 'when the user exist' do
         it 'returns the user' do
-          expect(json_body["id"]).to eq(user_id)
+          expect(json_body[:id]).to eq(user_id)
         end
 
         it ' return 200' do
@@ -39,7 +39,7 @@ RSpec.describe Api::V1::UsersController, type: :request do
  
           it 'returns the json data for the created user' do
             
-              expect(json_body['email']).to match(user_params['email'])
+              expect(json_body[:email]).to match(user_params['email'])
           end
         end
     
@@ -51,7 +51,7 @@ RSpec.describe Api::V1::UsersController, type: :request do
           end
     
           it 'returns the json data for the errors' do
-              expect(json_body).to have_key('errors')
+              expect(json_body).to have_key(:errors)
           end
         end
       end
@@ -69,7 +69,7 @@ RSpec.describe Api::V1::UsersController, type: :request do
           end
 
           it 'return json' do
-            expect(json_body['email']).to eq(user_params[:email])
+            expect(json_body[:email]).to eq(user_params[:email])
           end
         end
     end

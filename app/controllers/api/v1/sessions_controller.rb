@@ -12,6 +12,16 @@ class Api::V1::SessionsController < ApplicationController
       end
     end
 
+    def destroy
+      user = User.find_by(auth_token: params[:id])
+      begin
+      user.generate_authentication_token!
+      user.save!
+      render json: user, status: 204
+      rescue
+      render json: user, status: 401
+      end
+    end
     private
 
     def session_params

@@ -6,4 +6,8 @@ module Authenticable
    def authenticate_with_token!
        render json: { errors: 'Unathourized access'}, status: 401 unless current_user.present?
    end
+
+   def user_logged_in?
+      current_user.present?
+   end
 end

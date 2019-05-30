@@ -1,10 +1,10 @@
-class Api::V1::UsersController < ApplicationController
+class Api::V2::UsersController < ApplicationController
     before_action :authenticate_with_token!, only: [:update, :destroy]
     respond_to :json
     def show 
      begin 
       @user = User.find(params[:id])
-      render json: {user: @user}, status: 200
+      respond_with @user
      rescue
       head 404
      end
@@ -21,10 +21,10 @@ class Api::V1::UsersController < ApplicationController
    end
 
    def update
-    user = User.find(params[:id])
+    user = current_user
      begin    
       if user.update(user_params)
-        render json: { user: user}, status: 200
+        render json: user, status: 200
       end
     rescue
        render json: {errors: user_errors}, status: 422

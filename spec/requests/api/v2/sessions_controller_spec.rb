@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Sessions API', type: :request do
   before { host! 'api.taskmanager.dev' }
-  let(:user) { create(:user, password: 'thisis@1458', password_confirmation: 'thisis@1458' ) }
+  let(:user) { create(:user, password: "2030") }
   let(:headers) do
     {
       'Accept' => 'application/vnd.task-manager.v1',
@@ -16,7 +16,7 @@ RSpec.describe 'Sessions API', type: :request do
     end
 
     context 'when the credentials are correct' do
-      let(:credentials) { { email: user.email, password: 'thisis@1458' } }
+      let(:credentials) { { email: user.email, password: 'sorrirparanao' } }
 
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
@@ -24,7 +24,7 @@ RSpec.describe 'Sessions API', type: :request do
 
       it 'returns the json data for the user with auth token' do
         user.reload
-        expect(json_body[:auth_token]).to eq(user.auth_token)
+        expect(json_body[:user][:auth_token]).to eq(user.auth_token)
       end
     end
 

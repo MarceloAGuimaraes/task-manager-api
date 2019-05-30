@@ -13,6 +13,7 @@ gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'nokogiri'
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
@@ -35,6 +36,9 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'faker'
+    # Code coverage for Ruby 1.9+
+  gem 'simplecov', require: false
+  
   gem 'factory_girl_rails'
   gem 'rails-controller-testing'
 end
@@ -48,5 +52,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
+gem 'active_model_serializers', '~> 0.10.0'
 gem 'devise'

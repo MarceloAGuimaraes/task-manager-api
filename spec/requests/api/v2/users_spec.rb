@@ -37,8 +37,10 @@ RSpec.describe Api::V1::UsersController, type: :request do
     
         context 'when the request params are valid' do
           let(:user_params) { FactoryGirl.attributes_for(:user) }
+ 
           it 'returns the json data for the created user' do
-              expect(json_body[:errors][:email]).to include("has already been taken")
+            
+              expect(json_body[:email]).to match(user_params['email'])
           end
         end
     
